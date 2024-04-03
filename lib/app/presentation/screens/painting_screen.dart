@@ -11,7 +11,7 @@ class PaintingScreen extends StatelessWidget {
   final bool isFruit;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(''),
         actions: [

@@ -39,7 +39,7 @@ class _MovingScreenState extends State<MovingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Column(

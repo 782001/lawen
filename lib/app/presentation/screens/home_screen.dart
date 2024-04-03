@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           image: "day3", title: "التقييم", discription: "اختبر نفسك", id: 3),
     ];
 
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
         // appBar: AppBar(
         //   title: Text(
         //     customModel.discreption,
