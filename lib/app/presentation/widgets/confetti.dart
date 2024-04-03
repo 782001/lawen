@@ -45,48 +45,46 @@ class _showConfettiState extends State<showConfetti> {
             maxBlastForce: 5,
             minBlastForce: 2,
             emissionFrequency: 0.05,
-            numberOfParticles: 100,
+            numberOfParticles: 20,
             gravity: 1,
           ),
         ),
-        // Align(
-        //   alignment: Alignment.topRight,
-        //   child: ConfettiWidget(
-        //     confettiController: widget._controllerTopCenter!,
-        //     blastDirection: pi / 2,
-        //     maxBlastForce: 5,
-        //     minBlastForce: 2,
-        //     emissionFrequency: 0.05,
-        //     numberOfParticles: 100,
-        //     gravity: 1,
-        //   ),
-        // ),
-        // Align(
-        //   alignment: Alignment.bottomLeft,
-        //   child: ConfettiWidget(
-        //     confettiController: widget._controllerTopCenter!,
-        //     blastDirection: pi / 2,
-        //     maxBlastForce: 5,
-        //     minBlastForce: 2,
-        //     emissionFrequency: 0.05,
-        //     numberOfParticles: 100,
-        //     gravity: 1,
-        //   ),
-        // ),
-
-        // Align(
-        //   alignment: Alignment.bottomRight,
-        //   child: ConfettiWidget(
-
-        //     confettiController: widget._controllerTopCenter!,
-        //     blastDirection: pi / 2,
-        //     maxBlastForce: 5,
-        //     minBlastForce: 2,
-        //     emissionFrequency: 0.05,
-        //     numberOfParticles: 100,
-        //     gravity: 1,
-        //   ),
-        // ),
+        Align(
+          alignment: Alignment.topRight,
+          child: ConfettiWidget(
+            confettiController: widget._controllerTopCenter!,
+            blastDirection: pi / 2,
+            maxBlastForce: 5,
+            minBlastForce: 2,
+            emissionFrequency: 0.05,
+            numberOfParticles: 20,
+            gravity: 1,
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: ConfettiWidget(
+            confettiController: widget._controllerTopCenter!,
+            blastDirection: pi / 2,
+            maxBlastForce: 5,
+            minBlastForce: 2,
+            emissionFrequency: 0.05,
+            numberOfParticles: 20,
+            gravity: 1,
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: ConfettiWidget(
+            confettiController: widget._controllerTopCenter!,
+            blastDirection: pi / 2,
+            maxBlastForce: 5,
+            minBlastForce: 2,
+            emissionFrequency: 0.05,
+            numberOfParticles: 20,
+            gravity: 1,
+          ),
+        ),
       ],
     );
   }

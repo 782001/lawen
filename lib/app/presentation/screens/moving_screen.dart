@@ -10,8 +10,9 @@ import 'package:lawen/core/utils/styles.dart';
 
 class MovingScreen extends StatefulWidget {
   final LevelsModel levelsModel;
+  final bool isFruit;
 
-  const MovingScreen({super.key, required this.levelsModel});
+  const MovingScreen({super.key, required this.levelsModel, required this.isFruit});
   @override
   _MovingScreenState createState() => _MovingScreenState();
 }
@@ -90,10 +91,11 @@ class _MovingScreenState extends State<MovingScreen> {
                           _controllerTopCenter!.play();
                         }).then(
                           (value) => Future.delayed(Duration(seconds: 5)).then(
-                            (value) => NavTo(
+                            (value) => NavAndFinish(
                               context,
                               LevelsScreen(
-                                homeModelId: ,
+                                homeModelId: widget.isFruit?1:2,
+                                fromMoving:true,
                               ),
                             ),
                           ),

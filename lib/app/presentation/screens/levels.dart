@@ -7,13 +7,29 @@ import 'package:lawen/core/utils/media_query_values.dart';
 import 'package:lawen/core/utils/styles.dart';
 
 class LevelsScreen extends StatelessWidget {
-  const LevelsScreen({Key? key, required this.homeModelId}) : super(key: key);
-  final int  homeModelId;
+  const LevelsScreen(
+      {Key? key, required this.homeModelId, required this.fromMoving})
+      : super(key: key);
+  final int homeModelId;
+  final bool fromMoving;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(''),
+        actions: [
+          fromMoving
+              ? IconButton(
+                  onPressed: () {
+                    NavAndFinish(context, HomeScreen());
+                  },
+                  icon: Icon(
+                    Icons.home_filled,
+                    color: Colors.blue.shade900,
+                    size: 40,
+                  ))
+              : SizedBox.shrink()
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(children: [
@@ -31,7 +47,7 @@ class LevelsScreen extends StatelessWidget {
               height: context.height * .07,
               child: Center(
                 child: Text(
-                 homeModelId == 1 ? "الفواكه" : "الخضراوات",
+                  homeModelId == 1 ? "الفواكه" : "الخضراوات",
                   style: TextStyles.stylewhitebold25,
                 ),
               ),
@@ -67,10 +83,11 @@ class LevelsScreen extends StatelessWidget {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return LevelsCard(
-                       homeModelId == 1
+                        homeModelId == 1
                             ? FruitsList[index]
                             : VegetablesList[index],
                         index,
+                        homeModelId,
                         context);
                   },
                   itemCount: homeModelId == 1
@@ -320,9 +337,16 @@ List<LevelsModel> VegetablesList = [
       LawenImageAudio: ''),
 ];
 
-LevelsCard(LevelsModel model, int index, BuildContext context) => InkWell(
+LevelsCard(
+        LevelsModel model, int index, int homeModelId, BuildContext context) =>
+    InkWell(
       onTap: () {
-        NavTo(context, DisplayImageScreen(levelsModel: model));
+        NavTo(
+            context,
+            DisplayImageScreen(
+              levelsModel: model,
+              isFruit: homeModelId == 1 ? true : false,
+            ));
       },
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,

@@ -10,9 +10,11 @@ import 'package:lawen/core/utils/media_query_values.dart';
 import 'package:lawen/core/utils/styles.dart';
 
 class DisplayImageScreen extends StatefulWidget {
-  DisplayImageScreen({Key? key, required this.levelsModel}) : super(key: key);
+  DisplayImageScreen(
+      {Key? key, required this.levelsModel, required this.isFruit})
+      : super(key: key);
   final LevelsModel levelsModel;
-
+  final bool isFruit;
   @override
   State<DisplayImageScreen> createState() => _DisplayImageScreenState();
 }
@@ -57,7 +59,8 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
           Column(children: [
             Container(
               width: double.infinity / 1.2,
-              child: DisplayImageCard(widget.levelsModel, context),
+              child:
+                  DisplayImageCard(widget.levelsModel, widget.isFruit, context),
             ),
             Controls(
               audioPlayer: _audioPlayer,
@@ -72,9 +75,7 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
                 // });
                 Future.delayed(Duration(milliseconds: 1650)).then((value) {
                   playAudioAudio(widget.levelsModel.heySound1);
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                   _controllerTopCenter!.play();
                 });
                 // .then((value) => _controllerTopCenter!.play());
@@ -103,9 +104,15 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
   }
 }
 
-DisplayImageCard(LevelsModel model, BuildContext context) => InkWell(
+DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context) =>
+    InkWell(
       onTap: () {
-        NavTo(context, PaintingScreen(levelsModel: model));
+        NavTo(
+            context,
+            PaintingScreen(
+              levelsModel: model,
+              isFruit: isFruit,
+            ));
       },
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,

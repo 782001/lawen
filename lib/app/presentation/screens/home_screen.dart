@@ -64,7 +64,7 @@ Widget HomeCard(HomeModel model, BuildContext context) {
       NavTo(
           context,
           LevelsScreen(
-            homeModelId: model.id,
+            homeModelId: model.id, fromMoving: false,
           ));
     },
     child: Padding(
