@@ -9,11 +9,11 @@ class showConfetti extends StatefulWidget {
   const showConfetti({
     super.key,
     required ConfettiController? controllerTopCenter,
-    required this.levelsModel,
+    // required this.levelsModel,
   }) : _controllerTopCenter = controllerTopCenter;
 
   final ConfettiController? _controllerTopCenter;
-  final LevelsModel levelsModel;
+  // final LevelsModel levelsModel;
   @override
   State<showConfetti> createState() => _showConfettiState();
 }

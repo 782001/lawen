@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawen/app/presentation/screens/LevelRatingScreen.dart';
 import 'package:lawen/app/presentation/screens/display_image_screen.dart';
 import 'package:lawen/app/presentation/screens/home_screen.dart';
 import 'package:lawen/core/utils/assets_images_path.dart';
@@ -14,7 +15,8 @@ class LevelsScreen extends StatelessWidget {
   final bool fromMoving;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(''),
         actions: [
@@ -101,7 +103,9 @@ class LevelsScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              NavTo(context, LevelRatingScreen(homeModelId:homeModelId));
+            },
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Container(
@@ -227,7 +231,7 @@ List<LevelsModel> FruitsList = [
       LawenImageAudio: ''),
   LevelsModel(
       image: pear,
-      title: "كمثري",
+      title: "كُمثري",
       id: 9,
       tapSound: '',
       imageAudio: Pearm4a,

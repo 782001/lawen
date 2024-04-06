@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawen/app/presentation/screens/RatingScreen.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 import 'package:lawen/core/utils/components.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
@@ -61,7 +62,12 @@ class HomeScreen extends StatelessWidget {
 Widget HomeCard(HomeModel model, BuildContext context) {
   return InkWell(
     onTap: () {
-      NavTo(
+   
+   model.id==3?   NavTo(
+          context,
+          RatingScreen(
+          
+          )):   NavTo(
           context,
           LevelsScreen(
             homeModelId: model.id, fromMoving: false,

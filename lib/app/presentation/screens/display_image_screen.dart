@@ -96,7 +96,7 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
           if (_controllerTopCenter != null || _isPlaying)
             showConfetti(
               controllerTopCenter: _controllerTopCenter!,
-              levelsModel: widget.levelsModel,
+              // levelsModel: widget.levelsModel,
             ),
         ],
       ),
@@ -379,5 +379,3 @@ DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context) =>
 //   }
 // }
 late AudioPlayer _audioPlayer;
-
-// late StreamSubscription subscription;

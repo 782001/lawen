@@ -25,16 +25,13 @@ String pepper = _getAssetsImagePath('pepper.png');
 String potato = _getAssetsImagePath('potato.png');
 String tomato = _getAssetsImagePath('tomato.png');
 
+
+//sad cloud
+String sadCloud = _getAssetsImagePath('cloud.gif');
+
 String _getAssetsImagePath(String fileName) {
   return imageAssetsRoot + fileName;
 }
-
-
-
-
-
-
-
 
 
 
@@ -63,7 +60,7 @@ String Watermelonm4a = _getAssetsaudiosPath('Watermelon .m4a');
 String heym4a1 = _getAssetsaudiosPath('1 .m4a');
 String heym4a2 = _getAssetsaudiosPath('3.m4a');
 //  خطأ
-String errorm4a1 = _getAssetsaudiosPath('1 X.m4a');
+// String errorm4a1 = _getAssetsaudiosPath('1 X.m4a');
 String errorm4a2 = _getAssetsaudiosPath('2 X.m4a');
 
 

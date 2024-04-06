@@ -123,7 +123,7 @@ class _MovingScreenState extends State<MovingScreen> {
           if (_controllerTopCenter != null)
             showConfetti(
               controllerTopCenter: _controllerTopCenter!,
-              levelsModel: widget.levelsModel,
+              // levelsModel: widget.levelsModel,
             ),
         ],
       ),
