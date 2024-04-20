@@ -20,6 +20,8 @@ class DisplayImageScreen extends StatefulWidget {
 }
 
 class _DisplayImageScreenState extends State<DisplayImageScreen> {
+  late AudioPlayer _audioPlayer;
+
   ConfettiController? _controllerTopCenter;
   bool _isPlaying = false;
   @override
@@ -50,7 +52,8 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(''),
       ),
@@ -378,4 +381,3 @@ DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context) =>
 //     );
 //   }
 // }
-late AudioPlayer _audioPlayer;

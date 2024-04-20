@@ -33,7 +33,8 @@ class LevelRatingScreen extends StatefulWidget {
   State<LevelRatingScreen> createState() => _LevelRatingScreenState();
 }
 
-class _LevelRatingScreenState extends State<LevelRatingScreen> {
+class _LevelRatingScreenState extends State<LevelRatingScreen> {late AudioPlayer _audioPlayer;
+
   ConfettiController? _controllerTopCenter;
   late PageController pageController;
   @override
@@ -321,4 +322,3 @@ List<QuestionModel> Vegetablesquestions = [
   ),
 ];
 
-late AudioPlayer _audioPlayer;

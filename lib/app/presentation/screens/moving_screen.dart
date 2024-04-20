@@ -12,12 +12,13 @@ class MovingScreen extends StatefulWidget {
   final LevelsModel levelsModel;
   final bool isFruit;
 
-  const MovingScreen({super.key, required this.levelsModel, required this.isFruit});
+  const MovingScreen(
+      {super.key, required this.levelsModel, required this.isFruit});
   @override
   _MovingScreenState createState() => _MovingScreenState();
 }
 
-class _MovingScreenState extends State<MovingScreen> {
+class _MovingScreenState extends State<MovingScreen> {late AudioPlayer _audioPlayer;
   bool _isAppleMoved = false;
   ConfettiController? _controllerTopCenter;
   @override
@@ -39,7 +40,9 @@ class _MovingScreenState extends State<MovingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      appBar: AppBar(),
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Column(
@@ -94,8 +97,8 @@ class _MovingScreenState extends State<MovingScreen> {
                             (value) => NavAndFinish(
                               context,
                               LevelsScreen(
-                                homeModelId: widget.isFruit?1:2,
-                                fromMoving:true,
+                                homeModelId: widget.isFruit ? 1 : 2,
+                                fromMoving: true,
                               ),
                             ),
                           ),
@@ -131,4 +134,4 @@ class _MovingScreenState extends State<MovingScreen> {
   }
 }
 
-late AudioPlayer _audioPlayer;
+

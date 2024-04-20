@@ -30,7 +30,8 @@ class RatingScreen extends StatefulWidget {
   State<RatingScreen> createState() => _RatingScreenState();
 }
 
-class _RatingScreenState extends State<RatingScreen> {
+class _RatingScreenState extends State<RatingScreen> {late AudioPlayer _audioPlayer;
+
   ConfettiController? _controllerTopCenter;
   final PageController pageController = PageController();
   @override
@@ -302,4 +303,3 @@ List<RatingModel> RatingsList = [
   ),
 ];
 
-late AudioPlayer _audioPlayer;

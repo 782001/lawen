@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lawen/app/presentation/screens/home_screen.dart';
+import 'package:lawen/app/presentation/screens/boarding_screen.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
 import 'package:lawen/core/utils/styles.dart';
 
@@ -21,11 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
   statrDelay() {
     timer = Timer(
       Duration(seconds: 4),
-      () => NavAndFinish(context, HomeScreen()),
+      () => NavAndFinish(context, BoardingScreen()),
     );
   }
 
- 
   @override
   void initState() {
     super.initState();
@@ -42,7 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.end,
