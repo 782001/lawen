@@ -30,7 +30,8 @@ class RatingScreen extends StatefulWidget {
   State<RatingScreen> createState() => _RatingScreenState();
 }
 
-class _RatingScreenState extends State<RatingScreen> {late AudioPlayer _audioPlayer;
+class _RatingScreenState extends State<RatingScreen> {
+  late AudioPlayer _audioPlayer;
 
   ConfettiController? _controllerTopCenter;
   final PageController pageController = PageController();
@@ -77,7 +78,9 @@ class _RatingScreenState extends State<RatingScreen> {late AudioPlayer _audioPla
                             ? Pepperm4a
                             : index == 3
                                 ? Onionm4a
-                                : Pearm4a,
+                                : index == 4
+                                    ? Mangom4a
+                                    : Grapem4a,
               );
 
               return Column(
@@ -100,7 +103,9 @@ class _RatingScreenState extends State<RatingScreen> {late AudioPlayer _audioPla
                                   ? "اختر الفلفل"
                                   : index == 3
                                       ? "اختر البصل"
-                                      : "اختر الكُمثري ",
+                                      : index == 4
+                                          ? "اختر المانجا"
+                                          : "اختر العنب ",
                       style: TextStyles.styleellipsisblueShade900bold22),
                 ],
               );
@@ -268,7 +273,7 @@ List<RatingModel> RatingsList = [
   ),
   RatingModel(
     images: [
-      dates,
+      strawberry,
       grape,
       cucumber,
     ],
@@ -279,7 +284,7 @@ List<RatingModel> RatingsList = [
       tomato,
       pepper,
       orange,
-      pear,
+      apple,
     ],
     correctAnswerIndex: 1,
   ),
@@ -287,7 +292,7 @@ List<RatingModel> RatingsList = [
     images: [
       potato,
       onion,
-      kiwi,
+      banana,
       watermelon,
     ],
     correctAnswerIndex: 1,
@@ -297,9 +302,17 @@ List<RatingModel> RatingsList = [
       carrot,
       corn,
       lettuce,
-      pear,
+      mango,
+    ],
+    correctAnswerIndex: 3,
+  ),
+  RatingModel(
+    images: [
+      carrot,
+      corn,
+      lettuce,
+      grape,
     ],
     correctAnswerIndex: 3,
   ),
 ];
-

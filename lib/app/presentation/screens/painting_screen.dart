@@ -1,16 +1,26 @@
+import 'dart:math';
+
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:lawen/app/presentation/screens/display_image_screen.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 import 'package:lawen/app/presentation/screens/moving_screen.dart';
 import 'package:lawen/app/presentation/widgets/audio_used.dart';
+import 'package:lawen/core/utils/assets_images_path.dart';
+import 'package:lawen/core/utils/media_query_values.dart';
+import 'package:lawen/core/utils/styles.dart';
 
 class PaintingScreen extends StatefulWidget {
   const PaintingScreen(
-      {Key? key, required this.levelsModel, required this.isFruit})
+      {Key? key,
+      required this.levelsModel,
+      required this.isFruit,
+      required this.requiredPoints})
       : super(key: key);
   final LevelsModel levelsModel;
   final bool isFruit;
+  final int requiredPoints;
 
   @override
   State<PaintingScreen> createState() => _PaintingScreenState();
@@ -21,20 +31,20 @@ class _PaintingScreenState extends State<PaintingScreen> {
   List<List<Offset>> _paths = [];
   bool _isDrawingComplete = false;
   ConfettiController? _controllerTopCenter;
-  int _requiredPoints = 0;
+
   @override
   void initState() {
     _controllerTopCenter =
         ConfettiController(duration: const Duration(seconds: 4));
 
     super.initState();
-    _requiredPoints = calculateTotalPoints([
-      widget.levelsModel.pathData1,
-      widget.levelsModel.pathData2,
-      widget.levelsModel.pathData3,
-      widget.levelsModel.pathData4,
-      widget.levelsModel.pathData5,
-    ]);
+    // _requiredPoints = calculateTotalPoints([
+    //   widget.levelsModel.pathData1,
+    //   widget.levelsModel.pathData2,
+    //   widget.levelsModel.pathData3,
+    //   widget.levelsModel.pathData4,
+    //   widget.levelsModel.pathData5,
+    // ]);
     _audioPlayer = AudioPlayer();
   }
 
@@ -57,26 +67,56 @@ class _PaintingScreenState extends State<PaintingScreen> {
 // Create a list of paths
 // Combine paths individually
     final Path combinedPath = path1
-      ..addPath(path2, Offset.zero)
-      ..addPath(path3, Offset.zero)
-      ..addPath(path4, Offset.zero)
-      ..addPath(path5, Offset.zero);
+        // ..addPath(path2, Offset.zero)
+        // ..addPath(path3, Offset.zero)
+        // ..addPath(path4, Offset.zero)
+        // ..addPath(path5, Offset.zero)
+        ;
 // Usage
-    List<String> pathDataList = [
-      widget.levelsModel.pathData1, // Example path data
-      widget.levelsModel.pathData2, // Example path data
-      widget.levelsModel.pathData3, // Example path data
-      widget.levelsModel.pathData4, // Example path data
-      widget.levelsModel.pathData5, // Example path data
-      // Add path data for the other 4 paths
-    ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           // title: Text(''),
           ),
       body: _isDrawingComplete
-          ? Image.asset(widget.levelsModel.image)
+          ? Column(
+              children: [
+                Image.asset(widget.levelsModel.image),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MovingScreen(
+                          levelsModel: widget.levelsModel,
+                          isFruit: widget.isFruit,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: Colors.blue.shade900,
+                      ),
+                      width: context.width * 1,
+                      height: context.height * .07,
+                      child: Center(
+                        child: Text(
+                          "انتقل",
+                          style: TextStyles.stylewhitebold25,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           : Center(
               child: GestureDetector(
                 onPanUpdate: (details) {
@@ -102,6 +142,28 @@ class _PaintingScreenState extends State<PaintingScreen> {
                   });
                 },
                 onPanEnd: (details) {
+                  // double paintedPixels = 0;
+
+                  // for (final path in _paths) {
+                  //   for (int i = 0; i < path.length - 1; i++) {
+                  //     if (path[i] != null && path[i + 1] != null) {
+                  //       paintedPixels += (path[i + 1]! - path[i]!).distance *
+                  //           120; // Multiply by stroke width
+                  //     }
+                  //   }
+                  // }
+
+                  // double percentagePainted =
+                  //     ((paintedPixels / _requiredPoints) / 10) * 100;
+                  // print("percentagePainted $percentagePainted");
+                  // print(paintedPixels);
+                  // print(_requiredPoints);
+                  // if (percentagePainted >=
+                  //     (widget.levelsModel.id == 2
+                  //         ? 100
+                  //         : widget.levelsModel.id == 3
+                  //             ? 90
+                  //             : 100)) {
                   double paintedPoints = 0;
 
                   for (final path in _paths) {
@@ -109,19 +171,69 @@ class _PaintingScreenState extends State<PaintingScreen> {
                       paintedPoints++;
                     }
                   }
+                  // paintedPoints = paintedPoints * 75;
+                  // double percentagePainted =
+                  //     widget.requiredPoints / paintedPoints;
+                  // double percentagePainted =
+                  //     paintedPoints / widget.requiredPoints * 100;
+                  // // percentagePainted += percentagePainted;
+                  final double totalLength = calculateTotalLengthOfPath([
+                    widget.levelsModel.pathData1,
+                  ]);
+                  final double coveredLength = calculateCoveredLength(_paths);
+                  final double percentagePainted =
+                      (coveredLength / totalLength) * 100;
 
-                  double percentagePainted =
-                      paintedPoints / _requiredPoints * 100;
                   print("percentagePainted $percentagePainted");
-                  print(paintedPoints);
-                  print(_requiredPoints);
+                  print("coveredLength $coveredLength");
+                  print("totalLength $totalLength");
+                  // if (paintedPoints >=
+                  //     (widget.levelsModel.id == 6
+                  //         ? widget.requiredPoints
+                  //         : widget.requiredPoints)) {
                   if (percentagePainted >=
-                      (widget.levelsModel.id == 3 ? 1.3 : 2)) {
+                      (widget.levelsModel.id == 12
+                          ? 110
+                          : widget.levelsModel.id == 9
+                              ? 70
+                              : widget.levelsModel.id == 10
+                                  ? 85
+                                  : widget.levelsModel.id == 11
+                                      ? 120
+                                      : widget.levelsModel.id == 13
+                                          ? 120
+                                          : widget.levelsModel.id == 15
+                                              ? 120
+                                              : 100)) {
+                    // double paintedPoints = 0;
+
+                    // for (final path in _paths) {
+                    //   for (final point in path) {
+                    //     paintedPoints++;
+                    //   }
+                    // }
+                    // paintedPoints = paintedPoints * 240;
+                    // double percentagePainted =
+                    //     paintedPoints / _requiredPoints * 100;
+                    // print("percentagePainted $percentagePainted");
+                    // print(paintedPoints);
+                    // print(_requiredPoints);
+                    // if (percentagePainted >=
+                    //     (widget.levelsModel.id == 2
+                    //         ? 120
+                    //         : widget.levelsModel.id == 3
+                    //             ? 100
+                    //             : 100)) {
                     // _handleFullyPaintedShape();
                     setState(() {
                       _isDrawingComplete = true;
                     });
-                    playAudioAudio(widget.levelsModel.heySound2);
+                    final List<String> audioFiles = [bravo2, bravo1];
+                    Random random = Random();
+                    int randomIndex = random.nextInt(audioFiles.length);
+                    String randomAudio = audioFiles[randomIndex];
+                    playAudioAudio(randomAudio);
+                    // playAudioAudio(bravo2);
                   }
                 },
                 child: ClipPath(
@@ -157,6 +269,8 @@ class _PaintingScreenState extends State<PaintingScreen> {
                       paintColor: widget.levelsModel.paintColor,
                     ),
                     child: Container(
+                      // width: double.infinity,
+                      // height: context.height * 0.5,
                       decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.3),
                       ),
@@ -302,56 +416,4 @@ class CombinedPathClipper extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return false;
   }
-}
-
-int calculateTotalPoints(List<String> pathDataList) {
-  int totalPoints = 0;
-  for (String pathData in pathDataList) {
-    totalPoints += calculatePointsInPath(pathData);
-  }
-  return totalPoints;
-}
-
-int calculatePointsInPath(String pathData) {
-  final List<String> dataSegments = pathData.split(RegExp(r'[,\s]'));
-  int points = 0;
-
-  // Initialize variables to keep track of the last point coordinates
-  double lastX = 0.0;
-  double lastY = 0.0;
-
-  var i = 0;
-  while (i < dataSegments.length) {
-    final segment = dataSegments[i];
-    switch (segment) {
-      case 'M': // Move-to command
-        lastX = double.parse(dataSegments[i + 1]);
-        lastY = double.parse(dataSegments[i + 2]);
-        points++;
-        i += 3;
-        break;
-      case 'L': // Line-to command
-        lastX = double.parse(dataSegments[i + 1]);
-        lastY = double.parse(dataSegments[i + 2]);
-        points++;
-        i += 3;
-        break;
-      case 'C': // Cubic Bezier curve command
-        lastX = double.parse(dataSegments[i + 5]);
-        lastY = double.parse(dataSegments[i + 6]);
-        points += 3; // Each cubic Bezier curve has 3 points
-        i += 7;
-        break;
-      case 'Z': // Close path command
-        // For simplicity, we're not counting the closing point
-        i++;
-        break;
-      default:
-        // Unsupported segment, skip
-        i++;
-        break;
-    }
-  }
-
-  return points;
 }

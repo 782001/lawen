@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+import 'dart:ui';
+
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -62,8 +65,8 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
           Column(children: [
             Container(
               width: double.infinity / 1.2,
-              child:
-                  DisplayImageCard(widget.levelsModel, widget.isFruit, context),
+              child: DisplayImageCard(widget.levelsModel, widget.isFruit,
+                  context, _controllerTopCenter),
             ),
             Controls(
               audioPlayer: _audioPlayer,
@@ -107,14 +110,20 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
   }
 }
 
-DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context) =>
+DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context,
+        ConfettiController? _controllerTopCenter) =>
     InkWell(
       onTap: () {
+        final int _requiredPoints = calculateTotalPoints([
+          model.pathData1,
+        ]);
+        _controllerTopCenter!.stop();
         NavTo(
             context,
             PaintingScreen(
               levelsModel: model,
               isFruit: isFruit,
+              requiredPoints: _requiredPoints,
             ));
       },
       child: Stack(
@@ -164,6 +173,143 @@ DisplayImageCard(LevelsModel model, bool isFruit, BuildContext context) =>
         ],
       ),
     );
+
+// int calculateTotalPoints(List<String> pathDataList) {
+//   int totalPoints = 0;
+//   for (String pathData in pathDataList) {
+//     totalPoints += calculatePointsInPath(pathData);
+//   }
+//   return totalPoints;
+// }
+
+int calculatePointsInPath(String pathData) {
+  final List<String> dataSegments = pathData.split(RegExp(r'[,\s]'));
+  int points = 0;
+
+  // Initialize variables to keep track of the last point coordinates
+  double lastX = 0.0;
+  double lastY = 0.0;
+
+  var i = 0;
+  while (i < dataSegments.length) {
+    final segment = dataSegments[i];
+    switch (segment) {
+      case 'M': // Move-to command
+        lastX = double.parse(dataSegments[i + 1]);
+        lastY = double.parse(dataSegments[i + 2]);
+        points++;
+        i += 3;
+        break;
+      case 'L': // Line-to command
+        lastX = double.parse(dataSegments[i + 1]);
+        lastY = double.parse(dataSegments[i + 2]);
+        points++;
+        i += 3;
+        break;
+      case 'C': // Cubic Bezier curve command
+        lastX = double.parse(dataSegments[i + 5]);
+        lastY = double.parse(dataSegments[i + 6]);
+        points += 3; // Each cubic Bezier curve has 3 points
+        i += 7;
+        break;
+      case 'Z': // Close path command
+        // For simplicity, we're not counting the closing point
+        i++;
+        break;
+      default:
+        // Unsupported segment, skip
+        i++;
+        break;
+    }
+  }
+
+  return points;
+}
+
+int calculateTotalPoints(List<String> pathDataList) {
+  int totalPoints = 0;
+  for (String pathData in pathDataList) {
+    totalPoints += calculatePointsInPath(pathData);
+  }
+  return totalPoints;
+}
+
+double calculateLengthOfSegment(
+    double startX, double startY, double endX, double endY) {
+  return math.sqrt(math.pow(endX - startX, 2) + math.pow(endY - startY, 2));
+}
+
+// double calculateTotalLengthOfPath(List<String> pathDataList) {
+//   double totalLength = 0.0;
+//   for (String pathData in pathDataList) {
+//     final List<String> dataSegments = pathData.split(RegExp(r'[,\s]'));
+//     double lastX = 0.0;
+//     double lastY = 0.0;
+//     var i = 0;
+//     while (i < dataSegments.length) {
+//       final segment = dataSegments[i];
+//       switch (segment) {
+//         case 'M': // Move-to command
+//           lastX = double.parse(dataSegments[i + 1]);
+//           lastY = double.parse(dataSegments[i + 2]);
+//           i += 3;
+//           break;
+//         case 'L': // Line-to command
+//           double endX = double.parse(dataSegments[i + 1]);
+//           double endY = double.parse(dataSegments[i + 2]);
+//           totalLength += calculateLengthOfSegment(lastX, lastY, endX, endY);
+//           lastX = endX;
+//           lastY = endY;
+//           i += 3;
+//           break;
+//         case 'C': // Cubic Bezier curve command
+//           // Assuming cubic Bezier curves as lines for simplicity
+//           double endX = double.parse(dataSegments[i + 5]);
+//           double endY = double.parse(dataSegments[i + 6]);
+//           totalLength += calculateLengthOfSegment(lastX, lastY, endX, endY);
+//           lastX = endX;
+//           lastY = endY;
+//           i += 7;
+//           break;
+//         case 'Z': // Close path command
+//           // For simplicity, we're not counting the closing point
+//           i++;
+//           break;
+//         default:
+//           // Unsupported segment, skip
+//           i++;
+//           break;
+//       }
+//     }
+//   }
+//   return totalLength;
+// }
+
+double calculateTotalLengthOfPath(List<String> pathDataList) {
+  double totalLength = 0.0;
+  for (String pathData in pathDataList) {
+    final Path path = parseSvgPathData(pathData);
+    final PathMetrics metrics = path.computeMetrics();
+    for (final PathMetric metric in metrics) {
+      totalLength += metric.length;
+    }
+  }
+  return totalLength;
+}
+
+double calculateCoveredLength(List<List<Offset>> paths) {
+  double coveredLength = 0.0;
+  for (final path in paths) {
+    for (int i = 0; i < path.length - 1; i++) {
+      double startX = path[i].dx;
+      double startY = path[i].dy;
+      double endX = path[i + 1].dx;
+      double endY = path[i + 1].dy;
+      coveredLength += calculateLengthOfSegment(startX, startY, endX, endY);
+    }
+  }
+  return coveredLength;
+}
 
 // class PossitionData {
 //   final Duration position;

@@ -33,7 +33,8 @@ class LevelRatingScreen extends StatefulWidget {
   State<LevelRatingScreen> createState() => _LevelRatingScreenState();
 }
 
-class _LevelRatingScreenState extends State<LevelRatingScreen> {late AudioPlayer _audioPlayer;
+class _LevelRatingScreenState extends State<LevelRatingScreen> {
+  late AudioPlayer _audioPlayer;
 
   ConfettiController? _controllerTopCenter;
   late PageController pageController;
@@ -81,17 +82,19 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {late AudioPlayer
                       ? Applem4a
                       : index == 1
                           ? Guavam4a
-                          :Mangom4a,
+                          : index == 2
+                              ? Mangom4a
+                              : Strawberrym4a,
                 );
               }
               if (widget.homeModelId == 2) {
-                playAudioAudio(
-                   index == 0
-                            ? Cornm4a
-                            : index == 1
-                                ?Onionm4a
-                                : Potatom4a,
-                );
+                playAudioAudio(index == 0
+                    ? Cornm4a
+                    : index == 1
+                        ? Onionm4a
+                        : index == 2
+                            ? Potatom4a
+                            : Cucumberm4a);
               }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +115,9 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {late AudioPlayer
                             ? "اختر التفاحه"
                             : index == 1
                                 ? "اختر الجوافه"
-                                : "اختر المانجا ",
+                                : index == 2
+                                    ? "اختر المانجا"
+                                    : "اختر الفراوله ",
                         style: TextStyles.styleellipsisblueShade900bold22),
                   if (widget.homeModelId == 2)
                     Text(
@@ -120,7 +125,9 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {late AudioPlayer
                             ? "اختر الذره"
                             : index == 1
                                 ? "اختر البصل"
-                                : "اختر البطاطس ",
+                                : index == 2
+                                    ? "اختر البطاطس "
+                                    : "اختر الخيار",
                         style: TextStyles.styleellipsisblueShade900bold22),
                 ],
               );
@@ -288,7 +295,7 @@ List<QuestionModel> Fruitquestions = [
   ),
   QuestionModel(
     images: [
-      dates,
+      mango,
       grape,
       guava,
     ],
@@ -296,10 +303,19 @@ List<QuestionModel> Fruitquestions = [
   ),
   QuestionModel(
     images: [
-      kiwi,
+      strawberry,
       mango,
       orange,
-      pear,
+      apple,
+    ],
+    correctAnswerIndex: 1,
+  ),
+  QuestionModel(
+    images: [
+      grape,
+      strawberry,
+      banana,
+      guava,
     ],
     correctAnswerIndex: 1,
   ),
@@ -320,5 +336,8 @@ List<QuestionModel> Vegetablesquestions = [
     images: [pepper, potato, tomato, corn],
     correctAnswerIndex: 1,
   ),
+  QuestionModel(
+    images: [carrot, pepper, lettuce, cucumber],
+    correctAnswerIndex: 3,
+  ),
 ];
-

@@ -18,7 +18,8 @@ class MovingScreen extends StatefulWidget {
   _MovingScreenState createState() => _MovingScreenState();
 }
 
-class _MovingScreenState extends State<MovingScreen> {late AudioPlayer _audioPlayer;
+class _MovingScreenState extends State<MovingScreen> {
+  late AudioPlayer _audioPlayer;
   bool _isAppleMoved = false;
   ConfettiController? _controllerTopCenter;
   @override
@@ -88,21 +89,25 @@ class _MovingScreenState extends State<MovingScreen> {late AudioPlayer _audioPla
                         setState(() {
                           _isAppleMoved = true;
                         });
-                        Future.delayed(Duration(milliseconds: 1)).then((value) {
-                          playAudioAudio(widget.levelsModel.heySound1);
-                          setState(() {});
-                          _controllerTopCenter!.play();
-                        }).then(
-                          (value) => Future.delayed(Duration(seconds: 5)).then(
-                            (value) => NavAndFinish(
-                              context,
-                              LevelsScreen(
-                                homeModelId: widget.isFruit ? 1 : 2,
-                                fromMoving: true,
-                              ),
-                            ),
-                          ),
-                        );
+                        playAudioAudio(widget.levelsModel.heySound1);
+                        setState(() {});
+                        _controllerTopCenter!.play();
+
+                        // Future.delayed(Duration(milliseconds: 1)).then((value) {
+                        //   playAudioAudio(widget.levelsModel.heySound1);
+                        //   setState(() {});
+                        //   _controllerTopCenter!.play();
+                        // }).then(
+                        //   (value) => Future.delayed(Duration(seconds: 5)).then(
+                        //     (value) => NavAndFinish(
+                        //       context,
+                        //       LevelsScreen(
+                        //         homeModelId: widget.isFruit ? 1 : 2,
+                        //         fromMoving: true,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
                       },
                     ),
                     const SizedBox(height: 50),
@@ -123,6 +128,41 @@ class _MovingScreenState extends State<MovingScreen> {late AudioPlayer _audioPla
               ),
             ],
           ),
+          Positioned(
+            bottom: 1,
+            left: 1,
+            right: 1,
+            child: GestureDetector(
+              onTap: () {
+                NavAndFinish(
+                  context,
+                  LevelsScreen(
+                    homeModelId: widget.isFruit ? 1 : 2,
+                    fromMoving: true,
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: Colors.blue.shade900,
+                  ),
+                  width: context.width * 1,
+                  height: context.height * .07,
+                  child: Center(
+                    child: Text(
+                      "انتقل",
+                      style: TextStyles.stylewhitebold25,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           if (_controllerTopCenter != null)
             showConfetti(
               controllerTopCenter: _controllerTopCenter!,
@@ -133,5 +173,3 @@ class _MovingScreenState extends State<MovingScreen> {late AudioPlayer _audioPla
     );
   }
 }
-
-

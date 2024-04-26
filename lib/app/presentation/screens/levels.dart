@@ -27,11 +27,6 @@ import 'package:lawen/app/presentation/widgets/svgPathes/cucumber/cucumberpath_d
 import 'package:lawen/app/presentation/widgets/svgPathes/cucumber/cucumberpath_data3.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/cucumber/cucumberpath_data4.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/cucumber/cucumberpath_data5.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/dates/datespath_data1.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/dates/datespath_data2.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/dates/datespath_data3.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/dates/datespath_data4.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/dates/datespath_data5.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/grape/grapepath_data1.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/grape/grapepath_data2.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/grape/grapepath_data3.dart';
@@ -42,11 +37,6 @@ import 'package:lawen/app/presentation/widgets/svgPathes/guava/guavapath_data2.d
 import 'package:lawen/app/presentation/widgets/svgPathes/guava/guavapath_data3.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/guava/guavapath_data4.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/guava/guavapath_data5.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/kiwi/kiwipath_data1.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/kiwi/kiwipath_data2.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/kiwi/kiwipath_data3.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/kiwi/kiwipath_data4.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/kiwi/kiwipath_data5.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/lettuce/lettuceath_data1.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/lettuce/lettuceath_data2.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/lettuce/lettuceath_data3.dart';
@@ -67,11 +57,6 @@ import 'package:lawen/app/presentation/widgets/svgPathes/orange/orangepath_data2
 import 'package:lawen/app/presentation/widgets/svgPathes/orange/orangepath_data3.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/orange/orangepath_data4.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/orange/orangepath_data5.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/pear/pearpath_data1.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/pear/pearpath_data2.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/pear/pearpath_data3.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/pear/pearpath_data4.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/pear/pearpath_data5.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/pepper/pepperpath_data1.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/pepper/pepperpath_data2.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/pepper/pepperpath_data3.dart';
@@ -97,11 +82,6 @@ import 'package:lawen/app/presentation/widgets/svgPathes/tomato/tomatopath_data2
 import 'package:lawen/app/presentation/widgets/svgPathes/tomato/tomatopath_data3.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/tomato/tomatopath_data4.dart';
 import 'package:lawen/app/presentation/widgets/svgPathes/tomato/tomatopath_data5.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/watermelon/watermelonpath_data1.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/watermelon/watermelonpath_data2.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/watermelon/watermelonpath_data3.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/watermelon/watermelonpath_data4.dart';
-import 'package:lawen/app/presentation/widgets/svgPathes/watermelon/watermelonpath_data5.dart';
 import 'package:lawen/core/utils/assets_images_path.dart';
 import 'package:lawen/core/utils/components.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
@@ -300,21 +280,22 @@ List<LevelsModel> FruitsList = [
       heySound2: heym4a2,
       LawenImageAudio: '',
       paintColor: Color(0xfffadd3c)),
-  LevelsModel(
-      pathData1: datespathData1,
-      pathData2: datespathData2,
-      pathData3: datespathData3,
-      pathData4: datespathData4,
-      pathData5: datespathData5,
-      image: dates,
-      title: "بلح",
-      id: 3,
-      tapSound: '',
-      imageAudio: Datesm4a,
-      heySound1: heym4a2,
-      heySound2: heym4a2,
-      LawenImageAudio: '',
-      paintColor: Color(0xff5e0202)),
+  // LevelsModel(
+  //     pathData1: datespathData1,
+  //     pathData2: datespathData2,
+  //     pathData3: datespathData3,
+  //     pathData4: datespathData4,
+  //     pathData5: datespathData5,
+  //     image: dates,
+  //     title: "بلح",
+  //     id: 3,
+  //     tapSound: '',
+  //     imageAudio: Datesm4a,
+  //     heySound1: heym4a2,
+  //     heySound2: heym4a2,
+  //     LawenImageAudio: '',
+  //     paintColor: Color(0xff5e0202)),
+
   LevelsModel(
       pathData1: grapepathData1,
       pathData2: grapepathData2,
@@ -323,7 +304,7 @@ List<LevelsModel> FruitsList = [
       pathData5: grapepathData5,
       image: grape,
       title: "عنب",
-      id: 4,
+      id: 3,
       tapSound: '',
       imageAudio: Grapem4a,
       heySound1: heym4a1,
@@ -338,28 +319,29 @@ List<LevelsModel> FruitsList = [
       pathData5: guavapathData5,
       image: guava,
       title: "جوافه",
-      id: 5,
+      id: 4,
       tapSound: '',
       imageAudio: Guavam4a,
       heySound1: heym4a1,
       heySound2: heym4a2,
       LawenImageAudio: '',
       paintColor: Color(0xfff2da77)),
-  LevelsModel(
-      pathData1: kiwipathData1,
-      pathData2: kiwipathData2,
-      pathData3: kiwipathData3,
-      pathData4: kiwipathData4,
-      pathData5: kiwipathData5,
-      image: kiwi,
-      title: "كيوي",
-      id: 6,
-      tapSound: '',
-      imageAudio: Kiwim4a,
-      heySound1: heym4a2,
-      heySound2: heym4a2,
-      LawenImageAudio: '',
-      paintColor: Color(0xff613908)),
+  // LevelsModel(
+  //     pathData1: kiwipathData1,
+  //     pathData2: kiwipathData2,
+  //     pathData3: kiwipathData3,
+  //     pathData4: kiwipathData4,
+  //     pathData5: kiwipathData5,
+  //     image: kiwi,
+  //     title: "كيوي",
+  //     id: 6,
+  //     tapSound: '',
+  //     imageAudio: Kiwim4a,
+  //     heySound1: heym4a2,
+  //     heySound2: heym4a2,
+  //     LawenImageAudio: '',
+  //     paintColor: Color(0xff613908)),
+
   LevelsModel(
       pathData1: mangopathData1,
       pathData2: mangopathData2,
@@ -368,7 +350,7 @@ List<LevelsModel> FruitsList = [
       pathData5: mangopathData5,
       image: mango,
       title: "مانجا",
-      id: 7,
+      id: 5,
       tapSound: '',
       imageAudio: Mangom4a,
       heySound1: heym4a1,
@@ -383,28 +365,29 @@ List<LevelsModel> FruitsList = [
       pathData5: orangepathData5,
       image: orange,
       title: "برتقال",
-      id: 8,
+      id: 6,
       tapSound: '',
       imageAudio: Orangem4a,
       heySound1: heym4a1,
       heySound2: heym4a2,
       LawenImageAudio: '',
       paintColor: Color(0xffe6a132)),
-  LevelsModel(
-      pathData1: pearpathData1,
-      pathData2: pearpathData2,
-      pathData3: pearpathData3,
-      pathData4: pearpathData4,
-      pathData5: pearpathData5,
-      image: pear,
-      title: "كُمثري",
-      id: 9,
-      tapSound: '',
-      imageAudio: Pearm4a,
-      heySound1: heym4a2,
-      heySound2: heym4a1,
-      LawenImageAudio: '',
-      paintColor: Color(0xffb3b329)),
+  // LevelsModel(
+  //     pathData1: pearpathData1,
+  //     pathData2: pearpathData2,
+  //     pathData3: pearpathData3,
+  //     pathData4: pearpathData4,
+  //     pathData5: pearpathData5,
+  //     image: pear,
+  //     title: "كُمثري",
+  //     id: 9,
+  //     tapSound: '',
+  //     imageAudio: Pearm4a,
+  //     heySound1: heym4a2,
+  //     heySound2: heym4a1,
+  //     LawenImageAudio: '',
+  //     paintColor: Color(0xffb3b329)),
+
   LevelsModel(
       pathData1: pomegranatepathData1,
       pathData2: pomegranatepathData2,
@@ -413,7 +396,7 @@ List<LevelsModel> FruitsList = [
       pathData5: pomegranatepathData5,
       image: pomegranate,
       title: "رمان",
-      id: 10,
+      id: 7,
       tapSound: '',
       imageAudio: Pomegranatem4a,
       heySound1: heym4a1,
@@ -428,28 +411,28 @@ List<LevelsModel> FruitsList = [
       pathData5: strawberrypathData5,
       image: strawberry,
       title: "فراوله",
-      id: 11,
+      id: 8,
       tapSound: '',
       imageAudio: Strawberrym4a,
       heySound1: heym4a1,
       heySound2: heym4a1,
       LawenImageAudio: '',
       paintColor: Color(0xffb8162c)),
-  LevelsModel(
-      pathData1: watermelonpathData1,
-      pathData2: watermelonpathData2,
-      pathData3: watermelonpathData3,
-      pathData4: watermelonpathData4,
-      pathData5: watermelonpathData5,
-      image: watermelon,
-      title: "بطيخ",
-      id: 12,
-      tapSound: '',
-      imageAudio: Watermelonm4a,
-      heySound1: heym4a2,
-      heySound2: heym4a1,
-      LawenImageAudio: '',
-      paintColor: Color(0xff0e5c16)),
+  // LevelsModel(
+  //     pathData1: watermelonpathData1,
+  //     pathData2: watermelonpathData2,
+  //     pathData3: watermelonpathData3,
+  //     pathData4: watermelonpathData4,
+  //     pathData5: watermelonpathData5,
+  //     image: watermelon,
+  //     title: "بطيخ",
+  //     id: 12,
+  //     tapSound: '',
+  //     imageAudio: Watermelonm4a,
+  //     heySound1: heym4a2,
+  //     heySound2: heym4a1,
+  //     LawenImageAudio: '',
+  //     paintColor: Color(0xff0e5c16)),
 ];
 List<LevelsModel> VegetablesList = [
   LevelsModel(
@@ -460,7 +443,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: cornpathData5,
       image: corn,
       title: "ذره",
-      id: 1,
+      id: 9,
       tapSound: '',
       imageAudio: Cornm4a,
       heySound1: heym4a2,
@@ -475,7 +458,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: carrotpathData5,
       image: carrot,
       title: "جزر",
-      id: 2,
+      id: 10,
       tapSound: '',
       imageAudio: Carrotm4a,
       heySound1: heym4a1,
@@ -490,7 +473,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: cucumberpathData5,
       image: cucumber,
       title: "خيار",
-      id: 3,
+      id: 11,
       tapSound: '',
       imageAudio: Cucumberm4a,
       heySound1: heym4a2,
@@ -505,7 +488,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: lettucepathData5,
       image: lettuce,
       title: "خَسّ",
-      id: 4,
+      id: 12,
       tapSound: '',
       imageAudio: Lettucem4a,
       heySound1: heym4a2,
@@ -520,7 +503,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: onionpathData5,
       image: onion,
       title: "بصل",
-      id: 5,
+      id: 13,
       tapSound: '',
       imageAudio: Onionm4a,
       heySound1: heym4a1,
@@ -535,7 +518,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: pepperpathData5,
       image: pepper,
       title: "فلفل",
-      id: 6,
+      id: 14,
       tapSound: '',
       imageAudio: Pepperm4a,
       heySound1: heym4a2,
@@ -550,7 +533,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: potatopathData5,
       image: potato,
       title: "بطاطس",
-      id: 7,
+      id: 15,
       tapSound: '',
       imageAudio: Potatom4a,
       heySound1: heym4a1,
@@ -565,7 +548,7 @@ List<LevelsModel> VegetablesList = [
       pathData5: tomatopathData5,
       image: tomato,
       title: "طماطم",
-      id: 8,
+      id: 16,
       tapSound: '',
       imageAudio: Tomatom4a,
       heySound1: heym4a1,
