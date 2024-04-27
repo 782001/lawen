@@ -71,16 +71,16 @@ class _RatingScreenState extends State<RatingScreen> {
             itemBuilder: (context, index) {
               playAudioAudio(
                 index == 0
-                    ? Applem4a
+                    ? Applemp3
                     : index == 1
-                        ? Cucumberm4a
+                        ? Cucumbermp3
                         : index == 2
-                            ? Pepperm4a
+                            ? Peppermp3
                             : index == 3
-                                ? Onionm4a
+                                ? Onionmp3
                                 : index == 4
-                                    ? Mangom4a
-                                    : Grapem4a,
+                                    ? Mangomp3
+                                    : Grapemp3,
               );
 
               return Column(
@@ -208,7 +208,7 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
       onTap: () {
         Future.delayed(Duration(milliseconds: 100), () {
           if (widget.index == widget.Rating.correctAnswerIndex) {
-            final List<String> audioFiles = [heym4a1, heym4a2];
+            final List<String> audioFiles = [heymp31, heymp32];
             Random random = Random();
             int randomIndex = random.nextInt(audioFiles.length);
             String randomAudio = audioFiles[randomIndex];
@@ -226,7 +226,7 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
                       }
                     }));
           } else {
-            playAudioAudio(errorm4a2);
+            playAudioAudio(errormp32);
             showDialog(
               barrierColor: Colors.transparent,
               context: context,

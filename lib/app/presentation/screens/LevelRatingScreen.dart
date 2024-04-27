@@ -79,22 +79,22 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
               if (widget.homeModelId == 1) {
                 playAudioAudio(
                   index == 0
-                      ? Applem4a
+                      ? Applemp3
                       : index == 1
-                          ? Guavam4a
+                          ? Guavamp3
                           : index == 2
-                              ? Mangom4a
-                              : Strawberrym4a,
+                              ? Mangomp3
+                              : Strawberrymp3,
                 );
               }
               if (widget.homeModelId == 2) {
                 playAudioAudio(index == 0
-                    ? Cornm4a
+                    ? Cornmp3
                     : index == 1
-                        ? Onionm4a
+                        ? Onionmp3
                         : index == 2
-                            ? Potatom4a
-                            : Cucumberm4a);
+                            ? Potatomp3
+                            : Cucumbermp3);
               }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -230,7 +230,7 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
       onTap: () {
         Future.delayed(Duration(milliseconds: 100), () {
           if (widget.index == widget.question.correctAnswerIndex) {
-            final List<String> audioFiles = [heym4a1, heym4a2];
+            final List<String> audioFiles = [heymp31, heymp32];
             Random random = Random();
             int randomIndex = random.nextInt(audioFiles.length);
             String randomAudio = audioFiles[randomIndex];
@@ -248,7 +248,7 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
                       }
                     }));
           } else {
-            playAudioAudio(errorm4a2);
+            playAudioAudio(errormp32);
             showDialog(
               barrierColor: Colors.transparent,
               context: context,

@@ -8,15 +8,15 @@ import 'package:rxdart/rxdart.dart';
 
 late AudioPlayer _audioPlayer;
 
-late StreamSubscription subscription;
+// late StreamSubscription subscription;
 
-class PossitionData {
-  final Duration position;
-  final Duration bufferedPosition;
-  final Duration duration;
+// class PossitionData {
+//   final Duration position;
+//   final Duration bufferedPosition;
+//   final Duration duration;
 
-  const PossitionData(this.position, this.bufferedPosition, this.duration);
-}
+//   const PossitionData(this.position, this.bufferedPosition, this.duration);
+// }
 
 class Controls extends StatelessWidget {
   final AudioPlayer audioPlayer;
@@ -36,7 +36,7 @@ class Controls extends StatelessWidget {
       stream: audioPlayer.playerStateStream,
       builder: (context, snapshot) {
         final playerState = snapshot.data;
-        final processingState = playerState?.processingState;
+        // final processingState = playerState?.processingState;
         final playing = playerState?.playing;
 
         return GestureDetector(
@@ -80,20 +80,24 @@ class Controls extends StatelessWidget {
   }
 }
 
-Stream<PossitionData> get _positionDataStream =>
-    Rx.combineLatest3<Duration, Duration, Duration?, PossitionData>(
-        _audioPlayer.positionStream,
-        _audioPlayer.bufferedPositionStream,
-        _audioPlayer.durationStream,
-        (position, bufferedPosition, duration) => PossitionData(
-            position, bufferedPosition, duration ?? Duration.zero));
+// Stream<PossitionData> get _positionDataStream =>
+//     Rx.combineLatest3<Duration, Duration, Duration?, PossitionData>(
+//         _audioPlayer.positionStream,
+//         _audioPlayer.bufferedPositionStream,
+//         _audioPlayer.durationStream,
+//         (position, bufferedPosition, duration) => PossitionData(
+//             position, bufferedPosition, duration ?? Duration.zero));
 
 void playAudioAudio(String imageAudioPath) {
-  print(imageAudioPath);
-  _audioPlayer = AudioPlayer()..setAsset(imageAudioPath);
-  _audioPlayer.positionStream;
-  _audioPlayer.bufferedPositionStream;
-  _audioPlayer.durationStream;
-  _audioPlayer.play();
-  // _audioPlayer.play;
+  try {
+    print(imageAudioPath);
+    _audioPlayer = AudioPlayer()..setAsset(imageAudioPath);
+    // _audioPlayer.positionStream;
+    // _audioPlayer.bufferedPositionStream;
+    // _audioPlayer.durationStream;
+    _audioPlayer.play();
+  } catch (e) {
+    print("Error playing audio: $e");
+    // Handle the error here, such as displaying an error message to the user
+  }
 }

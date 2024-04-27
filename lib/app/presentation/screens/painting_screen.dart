@@ -142,28 +142,7 @@ class _PaintingScreenState extends State<PaintingScreen> {
                   });
                 },
                 onPanEnd: (details) {
-                  // double paintedPixels = 0;
-
-                  // for (final path in _paths) {
-                  //   for (int i = 0; i < path.length - 1; i++) {
-                  //     if (path[i] != null && path[i + 1] != null) {
-                  //       paintedPixels += (path[i + 1]! - path[i]!).distance *
-                  //           120; // Multiply by stroke width
-                  //     }
-                  //   }
-                  // }
-
-                  // double percentagePainted =
-                  //     ((paintedPixels / _requiredPoints) / 10) * 100;
-                  // print("percentagePainted $percentagePainted");
-                  // print(paintedPixels);
-                  // print(_requiredPoints);
-                  // if (percentagePainted >=
-                  //     (widget.levelsModel.id == 2
-                  //         ? 100
-                  //         : widget.levelsModel.id == 3
-                  //             ? 90
-                  //             : 100)) {
+                 
                   double paintedPoints = 0;
 
                   for (final path in _paths) {
@@ -171,12 +150,7 @@ class _PaintingScreenState extends State<PaintingScreen> {
                       paintedPoints++;
                     }
                   }
-                  // paintedPoints = paintedPoints * 75;
-                  // double percentagePainted =
-                  //     widget.requiredPoints / paintedPoints;
-                  // double percentagePainted =
-                  //     paintedPoints / widget.requiredPoints * 100;
-                  // // percentagePainted += percentagePainted;
+               
                   final double totalLength = calculateTotalLengthOfPath([
                     widget.levelsModel.pathData1,
                   ]);
@@ -205,26 +179,8 @@ class _PaintingScreenState extends State<PaintingScreen> {
                                           : widget.levelsModel.id == 15
                                               ? 120
                                               : 100)) {
-                    // double paintedPoints = 0;
+          
 
-                    // for (final path in _paths) {
-                    //   for (final point in path) {
-                    //     paintedPoints++;
-                    //   }
-                    // }
-                    // paintedPoints = paintedPoints * 240;
-                    // double percentagePainted =
-                    //     paintedPoints / _requiredPoints * 100;
-                    // print("percentagePainted $percentagePainted");
-                    // print(paintedPoints);
-                    // print(_requiredPoints);
-                    // if (percentagePainted >=
-                    //     (widget.levelsModel.id == 2
-                    //         ? 120
-                    //         : widget.levelsModel.id == 3
-                    //             ? 100
-                    //             : 100)) {
-                    // _handleFullyPaintedShape();
                     setState(() {
                       _isDrawingComplete = true;
                     });
@@ -240,26 +196,8 @@ class _PaintingScreenState extends State<PaintingScreen> {
                   clipper: CombinedPathClipper(
                     combinedPath,
                     onClipComplete: () {
-                      // Do something when clipping is complete
-                      // setState(() {
-                      //   _isDrawingComplete = true;
-                      // });
-                      // Future.delayed(Duration(milliseconds: 1)).then((value) {
-                      //   playAudioAudio(widget.levelsModel.heySound1);
-                      //   setState(() {});
-                      //   _controllerTopCenter!.play();
-                      // }).then(
-                      //   (value) => Future.delayed(Duration(seconds: 5)).then(
-                      //     (value) {
-                      //       _controllerTopCenter!.stop();
-                      //       NavAndFinish(
-                      //           context,
-                      //           MovingScreen(
-                      //               levelsModel: widget.levelsModel,
-                      //               isFruit: widget.isFruit));
-                      //     },
-                      //   ),
-                      // );
+      
+                      
                     },
                   ),
                   child: CustomPaint(
@@ -282,10 +220,10 @@ class _PaintingScreenState extends State<PaintingScreen> {
     );
   }
 
-  void _handleFullyPaintedShape() {
-    // Handle when the shape is fully painted
-    _handleConfetti();
-  }
+  // void _handleFullyPaintedShape() {
+  //   // Handle when the shape is fully painted
+  //   _handleConfetti();
+  // }
 
   void _completeDrawing() {
     setState(() {
@@ -293,26 +231,27 @@ class _PaintingScreenState extends State<PaintingScreen> {
     });
   }
 
-  void _handleConfetti() {
-    Future.delayed(const Duration(milliseconds: 1)).then((value) {
-      playAudioAudio(widget.levelsModel.heySound2);
-      setState(() {});
-      _controllerTopCenter!.play();
-    }).then((value) {
-      Future.delayed(const Duration(seconds: 5)).then((value) {
-        _controllerTopCenter!.stop();
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MovingScreen(
-              levelsModel: widget.levelsModel,
-              isFruit: widget.isFruit,
-            ),
-          ),
-        );
-      });
-    });
-  }
+  // void _handleConfetti() {
+  //   Future.delayed(const Duration(milliseconds: 1)).then((value) {
+  //     playAudioAudio(widget.levelsModel.heySound2);
+  //     setState(() {});
+  //     _controllerTopCenter!.play();
+  //   }).then((value) {
+  //     Future.delayed(const Duration(seconds: 5)).then((value) {
+  //       _controllerTopCenter!.stop();
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => MovingScreen(
+  //             levelsModel: widget.levelsModel,
+  //             isFruit: widget.isFruit,
+  //           ),
+  //         ),
+  //       );
+  //     });
+  //   });
+  // }
+
 }
 
 bool _isPointInsideShape(Offset point) {

@@ -14,7 +14,6 @@ String pomegranate = _getAssetsImagePath('pomegranate.png');
 String strawberry = _getAssetsImagePath('strawberry.png');
 String watermelon = _getAssetsImagePath('watermelon.png');
 
-
 //vegetables
 String corn = _getAssetsImagePath('corn.png');
 String carrot = _getAssetsImagePath('carrot.png');
@@ -28,7 +27,6 @@ String tomato = _getAssetsImagePath('tomato.png');
 //error
 String error = _getAssetsImagePath('error.png');
 
-
 //sad cloud
 String sadCloud = _getAssetsImagePath('cloud.gif');
 
@@ -36,39 +34,36 @@ String _getAssetsImagePath(String fileName) {
   return imageAssetsRoot + fileName;
 }
 
-
-
-String Applem4a = _getAssetsaudiosPath('Apple.m4a');
-String Bananam4a = _getAssetsaudiosPath('Banana.m4a');
-String Carrotm4a = _getAssetsaudiosPath('Carrot.m4a');
-String Cornm4a = _getAssetsaudiosPath('Corn.m4a');
-String Cucumberm4a = _getAssetsaudiosPath('Cucumber.m4a');
-String Datesm4a = _getAssetsaudiosPath('Dates.m4a');
-String Grapem4a = _getAssetsaudiosPath('Grape.m4a');
-String Guavam4a = _getAssetsaudiosPath('Guava.m4a');
-String Kiwim4a = _getAssetsaudiosPath('Kiwi.m4a');
-String Lettucem4a = _getAssetsaudiosPath('Lettuce.m4a');
-String Mangom4a = _getAssetsaudiosPath('Mango.m4a');
-String Onionm4a = _getAssetsaudiosPath('Onion.m4a');
-String Orangem4a = _getAssetsaudiosPath('Orange.m4a');
-String Pearm4a = _getAssetsaudiosPath('Pear.m4a');
-String Pepperm4a = _getAssetsaudiosPath('Pepper.m4a');
-String Pomegranatem4a = _getAssetsaudiosPath('Pomegranate.m4a');
-String Potatom4a = _getAssetsaudiosPath('Potato.m4a');
-String Strawberrym4a = _getAssetsaudiosPath('Strawberry.m4a');
-String Tomatom4a = _getAssetsaudiosPath('Tomato.m4a');
-String Watermelonm4a = _getAssetsaudiosPath('Watermelon.m4a');
+String Applemp3 = _getAssetsaudiosPath('Apple.mp3');
+String Bananamp3 = _getAssetsaudiosPath('Banana.mp3');
+String Carrotmp3 = _getAssetsaudiosPath('Carrot.mp3');
+String Cornmp3 = _getAssetsaudiosPath('Corn.mp3');
+String Cucumbermp3 = _getAssetsaudiosPath('Cucumber.mp3');
+String Datesmp3 = _getAssetsaudiosPath('Dates.mp3');
+String Grapemp3 = _getAssetsaudiosPath('Grape.mp3');
+String Guavamp3 = _getAssetsaudiosPath('Guava.mp3');
+String Kiwimp3 = _getAssetsaudiosPath('Kiwi.mp3');
+String Lettucemp3 = _getAssetsaudiosPath('Lettuce.mp3');
+String Mangomp3 = _getAssetsaudiosPath('Mango.mp3');
+String Onionmp3 = _getAssetsaudiosPath('Onion.mp3');
+String Orangemp3 = _getAssetsaudiosPath('Orange.mp3');
+String Pearmp3 = _getAssetsaudiosPath('Pear.mp3');
+String Peppermp3 = _getAssetsaudiosPath('Pepper.mp3');
+String Pomegranatemp3 = _getAssetsaudiosPath('Pomegranate.mp3');
+String Potatomp3 = _getAssetsaudiosPath('Potato.mp3');
+String Strawberrymp3 = _getAssetsaudiosPath('Strawberry.mp3');
+String Tomatomp3 = _getAssetsaudiosPath('Tomato.mp3');
+String Watermelonmp3 = _getAssetsaudiosPath('Watermelon.mp3');
 
 //تعزيز
-String heym4a1 = _getAssetsaudiosPath('1.m4a');
-String heym4a2 = _getAssetsaudiosPath('3.m4a');
-String bravo1 = _getAssetsaudiosPath('bravo1.m4a');
-String bravo2 = _getAssetsaudiosPath('bravo2.m4a');
+String heymp31 = _getAssetsaudiosPath('1.mp3');
+String heymp32 = _getAssetsaudiosPath('3.mp3');
+String bravo1 = _getAssetsaudiosPath('bravo1.mp3');
+String bravo2 = _getAssetsaudiosPath('bravo2.mp3');
 
 //  خطأ
-// String errorm4a1 = _getAssetsaudiosPath('1 X.m4a');
-String errorm4a2 = _getAssetsaudiosPath('2X.m4a');
-
+// String errormp31 = _getAssetsaudiosPath('1 X.mp3');
+String errormp32 = _getAssetsaudiosPath('2X.mp3');
 
 String _getAssetsaudiosPath(String fileName) {
   return audiosAssetsRoot + fileName;
