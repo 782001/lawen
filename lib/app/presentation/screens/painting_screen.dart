@@ -30,12 +30,12 @@ class _PaintingScreenState extends State<PaintingScreen> {
   late AudioPlayer _audioPlayer;
   List<List<Offset>> _paths = [];
   bool _isDrawingComplete = false;
-  ConfettiController? _controllerTopCenter;
+  // ConfettiController? _controllerTopCenter;
 
   @override
   void initState() {
-    _controllerTopCenter =
-        ConfettiController(duration: const Duration(seconds: 4));
+    // _controllerTopCenter =
+    //     ConfettiController(duration: const Duration(seconds: 4));
 
     super.initState();
     // _requiredPoints = calculateTotalPoints([
@@ -51,7 +51,7 @@ class _PaintingScreenState extends State<PaintingScreen> {
   @override
   void dispose() {
     _audioPlayer.dispose();
-    _controllerTopCenter!.dispose();
+    // _controllerTopCenter!.dispose();
 
     super.dispose();
   }
@@ -142,7 +142,6 @@ class _PaintingScreenState extends State<PaintingScreen> {
                   });
                 },
                 onPanEnd: (details) {
-                 
                   double paintedPoints = 0;
 
                   for (final path in _paths) {
@@ -150,7 +149,7 @@ class _PaintingScreenState extends State<PaintingScreen> {
                       paintedPoints++;
                     }
                   }
-               
+
                   final double totalLength = calculateTotalLengthOfPath([
                     widget.levelsModel.pathData1,
                   ]);
@@ -179,8 +178,6 @@ class _PaintingScreenState extends State<PaintingScreen> {
                                           : widget.levelsModel.id == 15
                                               ? 120
                                               : 100)) {
-          
-
                     setState(() {
                       _isDrawingComplete = true;
                     });
@@ -188,17 +185,20 @@ class _PaintingScreenState extends State<PaintingScreen> {
                     Random random = Random();
                     int randomIndex = random.nextInt(audioFiles.length);
                     String randomAudio = audioFiles[randomIndex];
-                    playAudioAudio(randomAudio);
+                    // playAudioAudio(randomAudio);
+                     _audioPlayer = AudioPlayer()
+                ..setAsset(
+               randomAudio
+                );
+
+              _audioPlayer.play();
                     // playAudioAudio(bravo2);
                   }
                 },
                 child: ClipPath(
                   clipper: CombinedPathClipper(
                     combinedPath,
-                    onClipComplete: () {
-      
-                      
-                    },
+                    onClipComplete: () {},
                   ),
                   child: CustomPaint(
                     // size: const Size(200, 250),
@@ -251,7 +251,6 @@ class _PaintingScreenState extends State<PaintingScreen> {
   //     });
   //   });
   // }
-
 }
 
 bool _isPointInsideShape(Offset point) {

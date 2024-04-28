@@ -2,7 +2,6 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
-import 'package:lawen/app/presentation/widgets/audio_used.dart';
 import 'package:lawen/app/presentation/widgets/confetti.dart';
 import 'package:lawen/core/utils/components.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
@@ -89,7 +88,11 @@ class _MovingScreenState extends State<MovingScreen> {
                         setState(() {
                           _isAppleMoved = true;
                         });
-                        playAudioAudio(widget.levelsModel.heySound1);
+                        _audioPlayer = AudioPlayer()
+                          ..setAsset(widget.levelsModel.heySound1);
+
+                        _audioPlayer.play();
+                        // playAudioAudio(widget.levelsModel.heySound1);
                         setState(() {});
                         _controllerTopCenter!.play();
 

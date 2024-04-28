@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
 import 'package:lawen/core/utils/styles.dart';
-import 'package:rxdart/rxdart.dart';
 
 late AudioPlayer _audioPlayer;
 

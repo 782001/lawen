@@ -46,7 +46,10 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
     super.initState();
 
     _audioPlayer = AudioPlayer();
-    playAudioAudio(apple);
+    _audioPlayer = AudioPlayer()..setAsset(apple);
+
+    _audioPlayer.play();
+    // playAudioAudio(apple);
   }
 
   @override
@@ -77,24 +80,48 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
                 : Vegetablesquestions.length,
             itemBuilder: (context, index) {
               if (widget.homeModelId == 1) {
-                playAudioAudio(
-                  index == 0
-                      ? Applemp3
-                      : index == 1
-                          ? Guavamp3
-                          : index == 2
-                              ? Mangomp3
-                              : Strawberrymp3,
-                );
+                // playAudioAudio(
+                //   index == 0
+                //       ? Applemp3
+                //       : index == 1
+                //           ? Guavamp3
+                //           : index == 2
+                //               ? Mangomp3
+                //               : Strawberrymp3,
+                // );
+                _audioPlayer = AudioPlayer();
+                _audioPlayer = AudioPlayer()
+                  ..setAsset(
+                    index == 0
+                        ? Applemp3
+                        : index == 1
+                            ? Guavamp3
+                            : index == 2
+                                ? Mangomp3
+                                : Strawberrymp3,
+                  );
+
+                _audioPlayer.play();
               }
               if (widget.homeModelId == 2) {
-                playAudioAudio(index == 0
-                    ? Cornmp3
-                    : index == 1
-                        ? Onionmp3
-                        : index == 2
-                            ? Potatomp3
-                            : Cucumbermp3);
+                _audioPlayer = AudioPlayer();
+                _audioPlayer = AudioPlayer()
+                  ..setAsset(index == 0
+                      ? Cornmp3
+                      : index == 1
+                          ? Onionmp3
+                          : index == 2
+                              ? Potatomp3
+                              : Cucumbermp3);
+
+                _audioPlayer.play();
+                // playAudioAudio(index == 0
+                //     ? Cornmp3
+                //     : index == 1
+                //         ? Onionmp3
+                //         : index == 2
+                //             ? Potatomp3
+                //             : Cucumbermp3);
               }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -105,6 +132,7 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
                         : Vegetablesquestions[index],
                     controllerTopCenter: _controllerTopCenter!,
                     pageController: pageController,
+                    audioPlayer: _audioPlayer,
                   ),
                   SizedBox(
                     height: 25,
@@ -147,11 +175,13 @@ class QuestionPage extends StatelessWidget {
   final QuestionModel question;
   final ConfettiController controllerTopCenter;
   final PageController pageController;
+  final AudioPlayer audioPlayer;
   QuestionPage({
     Key? key,
     required this.question,
     required this.controllerTopCenter,
     required this.pageController,
+    required this.audioPlayer,
   }) : super(key: key);
 
   @override
@@ -184,6 +214,7 @@ class QuestionPage extends StatelessWidget {
                   index: index,
                   controllerTopCenter: controllerTopCenter,
                   pageController: pageController,
+                  audioPlayer: audioPlayer,
                 );
               },
             ),
@@ -199,12 +230,14 @@ class RatingQuestCard extends StatefulWidget {
   final int index;
   final PageController pageController;
   final ConfettiController controllerTopCenter;
+  late AudioPlayer audioPlayer;
 
-  const RatingQuestCard(
+  RatingQuestCard(
       {required this.question,
       required this.index,
       required this.controllerTopCenter,
-      required this.pageController});
+      required this.pageController,
+      required this.audioPlayer});
 
   @override
   State<RatingQuestCard> createState() => _RatingQuestCardState();
@@ -234,7 +267,11 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
             Random random = Random();
             int randomIndex = random.nextInt(audioFiles.length);
             String randomAudio = audioFiles[randomIndex];
-            playAudioAudio(randomAudio);
+            widget.audioPlayer = AudioPlayer();
+            widget.audioPlayer = AudioPlayer()..setAsset(randomAudio);
+
+            widget.audioPlayer.play();
+            // playAudioAudio(randomAudio);
             // setState(() {});
             widget.controllerTopCenter.play();
             Future.delayed(Duration(seconds: 4)).then(
@@ -248,7 +285,11 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
                       }
                     }));
           } else {
-            playAudioAudio(errormp32);
+              widget.audioPlayer = AudioPlayer();
+            widget.audioPlayer = AudioPlayer()..setAsset(errormp32);
+
+            widget.audioPlayer.play();
+            // playAudioAudio(errormp32);
             showDialog(
               barrierColor: Colors.transparent,
               context: context,

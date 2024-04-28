@@ -69,19 +69,35 @@ class _RatingScreenState extends State<RatingScreen> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: RatingsList.length,
             itemBuilder: (context, index) {
-              playAudioAudio(
-                index == 0
-                    ? Applemp3
-                    : index == 1
-                        ? Cucumbermp3
-                        : index == 2
-                            ? Peppermp3
-                            : index == 3
-                                ? Onionmp3
-                                : index == 4
-                                    ? Mangomp3
-                                    : Grapemp3,
-              );
+              _audioPlayer = AudioPlayer()
+                ..setAsset(
+                  index == 0
+                      ? Applemp3
+                      : index == 1
+                          ? Cucumbermp3
+                          : index == 2
+                              ? Peppermp3
+                              : index == 3
+                                  ? Onionmp3
+                                  : index == 4
+                                      ? Mangomp3
+                                      : Grapemp3,
+                );
+
+              _audioPlayer.play();
+              // playAudioAudio(
+              //   index == 0
+              //       ? Applemp3
+              //       : index == 1
+              //           ? Cucumbermp3
+              //           : index == 2
+              //               ? Peppermp3
+              //               : index == 3
+              //                   ? Onionmp3
+              //                   : index == 4
+              //                       ? Mangomp3
+              //                       : Grapemp3,
+              // );
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,

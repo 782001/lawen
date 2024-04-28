@@ -35,7 +35,10 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
     super.initState();
 
     _audioPlayer = AudioPlayer();
-    playAudioAudio(widget.levelsModel.imageAudio);
+    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+
+    _audioPlayer.play();
+    // playAudioAudio(widget.levelsModel.imageAudio);
 
     // Future.delayed(Duration(microseconds: 10))
     //     .then((value) => playAudioAudio(widget.levelsModel.imageAudio))
@@ -72,15 +75,22 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
               audioPlayer: _audioPlayer,
               onPlayPressed: () {
                 // Start playing audio again when استمع button is tapped
-                playAudioAudio(widget.levelsModel.imageAudio);
+                 _audioPlayer = AudioPlayer();
+    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+
+    _audioPlayer.play();
+                // playAudioAudio(widget.levelsModel.imageAudio);
                 // _audioPlayer.playerStateStream.listen((playerState) {
                 //   if (playerState.processingState ==
                 //       ProcessingState.completed) {
 
                 // }
                 // });
-                Future.delayed(Duration(milliseconds: 1650)).then((value) {
-                  playAudioAudio(widget.levelsModel.heySound1);
+                Future.delayed(Duration(milliseconds: 1650)).then((value) {  _audioPlayer = AudioPlayer();
+    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.heySound1);
+
+    _audioPlayer.play();
+                  // playAudioAudio(widget.levelsModel.heySound1);
                   setState(() {});
                   _controllerTopCenter!.play();
                 });
