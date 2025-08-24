@@ -1,12 +1,12 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 import 'package:lawen/app/presentation/screens/painting_screen.dart';
-import 'package:lawen/app/presentation/widgets/audio_used.dart';
 import 'package:lawen/app/presentation/widgets/confetti.dart';
 import 'package:lawen/core/utils/components.dart';
 import 'package:lawen/core/utils/media_query_values.dart';
@@ -23,7 +23,8 @@ class DisplayImageScreen extends StatefulWidget {
 }
 
 class _DisplayImageScreenState extends State<DisplayImageScreen> {
-  late AudioPlayer _audioPlayer;
+  // late AudioPlayer _audioPlayer;
+  final player = AudioPlayer();
 
   ConfettiController? _controllerTopCenter;
   bool _isPlaying = false;
@@ -34,10 +35,12 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
 
     super.initState();
 
-    _audioPlayer = AudioPlayer();
-    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+    // _audioPlayer = AudioPlayer();
 
-    _audioPlayer.play();
+    player.play(AssetSource(widget.levelsModel.imageAudio));
+    // _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+
+    // _audioPlayer.play();
     // playAudioAudio(widget.levelsModel.imageAudio);
 
     // Future.delayed(Duration(microseconds: 10))
@@ -51,7 +54,7 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    player.dispose();
     _controllerTopCenter!.dispose();
     super.dispose();
   }
@@ -71,43 +74,87 @@ class _DisplayImageScreenState extends State<DisplayImageScreen> {
               child: DisplayImageCard(widget.levelsModel, widget.isFruit,
                   context, _controllerTopCenter),
             ),
-            Controls(
-              audioPlayer: _audioPlayer,
-              onPlayPressed: () {
-                // Start playing audio again when استمع button is tapped
-                 _audioPlayer = AudioPlayer();
-    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+            GestureDetector(
+              onTap: () async {
+                await player.play(AssetSource(widget.levelsModel.imageAudio));
+                Future.delayed(Duration(milliseconds: 2000))
+                    .then((value) async {
+                  await player.play(AssetSource(widget.levelsModel.heySound1));
 
-    _audioPlayer.play();
-                // playAudioAudio(widget.levelsModel.imageAudio);
-                // _audioPlayer.playerStateStream.listen((playerState) {
-                //   if (playerState.processingState ==
-                //       ProcessingState.completed) {
-
-                // }
-                // });
-                Future.delayed(Duration(milliseconds: 1650)).then((value) {  _audioPlayer = AudioPlayer();
-    _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.heySound1);
-
-    _audioPlayer.play();
                   // playAudioAudio(widget.levelsModel.heySound1);
                   setState(() {});
                   _controllerTopCenter!.play();
                 });
-                // .then((value) => _controllerTopCenter!.play());
-                // playAudioAudio(widget.levelsModel.heySound1);
-                // _controllerTopCenter!.play();
-
-                // Future.delayed(Duration(seconds: 1))
-                //     .then((value) => _controllerTopCenter!.play());
-                // Future.delayed(Duration(milliseconds: 300))
-                //     .then((value) => setState(() {
-                //           _isPlaying = true;
-                //         }))
-                //     .then((value) => Future.delayed(Duration(seconds: 2))
-                //         .then((value) => _controllerTopCenter!.play()));
               },
-            ),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(
+                    top: 20, start: 20, end: 20),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      color: Colors.blue.shade900,
+                    ),
+                    width: context.width * 1,
+                    height: context.height * .07,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: Colors.blue.shade900,
+                      ),
+                      width: context.width * 1,
+                      height: context.height * .07,
+                      child: Center(
+                        child: Text(
+                          "استمع",
+                          style: TextStyles.stylewhitebold25,
+                          // textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )),
+              ),
+            )
+
+            //         Controls(
+            //           audioPlayer: _audioPlayer,
+            //           onPlayPressed: () {
+            //             // Start playing audio again when استمع button is tapped
+            //              _audioPlayer = AudioPlayer();
+            // _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.imageAudio);
+
+            // _audioPlayer.play();
+            //             // playAudioAudio(widget.levelsModel.imageAudio);
+            //             // _audioPlayer.playerStateStream.listen((playerState) {
+            //             //   if (playerState.processingState ==
+            //             //       ProcessingState.completed) {
+
+            //             // }
+            //             // });
+            // //             Future.delayed(Duration(milliseconds: 1650)).then((value) {  _audioPlayer = AudioPlayer();
+            // // _audioPlayer = AudioPlayer()..setAsset(widget.levelsModel.heySound1);
+
+            // // _audioPlayer.play();
+            // //               // playAudioAudio(widget.levelsModel.heySound1);
+            // //               setState(() {});
+            // //               _controllerTopCenter!.play();
+            // //             });
+            //             // .then((value) => _controllerTopCenter!.play());
+            //             // playAudioAudio(widget.levelsModel.heySound1);
+            //             // _controllerTopCenter!.play();
+
+            //             // Future.delayed(Duration(seconds: 1))
+            //             //     .then((value) => _controllerTopCenter!.play());
+            //             // Future.delayed(Duration(milliseconds: 300))
+            //             //     .then((value) => setState(() {
+            //             //           _isPlaying = true;
+            //             //         }))
+            //             //     .then((value) => Future.delayed(Duration(seconds: 2))
+            //             //         .then((value) => _controllerTopCenter!.play()));
+            //           },
+            //         ),
           ]),
           if (_controllerTopCenter != null || _isPlaying)
             showConfetti(

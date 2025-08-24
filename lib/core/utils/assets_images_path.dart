@@ -1,5 +1,5 @@
 const String imageAssetsRoot = "assets/images/";
-const String audiosAssetsRoot = "assets/audios/";
+const String audiosAssetsRoot = "audios/";
 //fruits
 String apple = _getAssetsImagePath('apple.png');
 String banana = _getAssetsImagePath('banana.png');

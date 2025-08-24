@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 
 class showConfetti extends StatefulWidget {
@@ -23,12 +23,12 @@ class _showConfettiState extends State<showConfetti> {
   void initState() {
     super.initState();
 
-    _audioPlayer = AudioPlayer();
+    // _audioPlayer = AudioPlayer();
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    // _audioPlayer.dispose();
 
     super.dispose();
   }
@@ -90,4 +90,4 @@ class _showConfettiState extends State<showConfetti> {
   }
 }
 
-late AudioPlayer _audioPlayer;
+// late AudioPlayer _audioPlayer;

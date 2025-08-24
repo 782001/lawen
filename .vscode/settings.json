@@ -3,5 +3,6 @@
         "source.fixAll": "explicit",
         "source.organizeImports": "always"
     },
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cmake.sourceDirectory": "F:/myApps/lawen/linux/flutter"
 }

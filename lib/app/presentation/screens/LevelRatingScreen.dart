@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/widgets/audio_used.dart';
 import 'package:lawen/app/presentation/widgets/confetti.dart';
 import 'package:lawen/core/utils/assets_images_path.dart';
@@ -34,8 +35,9 @@ class LevelRatingScreen extends StatefulWidget {
 }
 
 class _LevelRatingScreenState extends State<LevelRatingScreen> {
-  late AudioPlayer _audioPlayer;
-
+  // late AudioPlayer _audioPlayer;
+  final player = AudioPlayer();
+         
   ConfettiController? _controllerTopCenter;
   late PageController pageController;
   @override
@@ -45,16 +47,12 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
     pageController = PageController();
     super.initState();
 
-    _audioPlayer = AudioPlayer();
-    _audioPlayer = AudioPlayer()..setAsset(apple);
-
-    _audioPlayer.play();
     // playAudioAudio(apple);
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    player.dispose();
     pageController.dispose();
     _controllerTopCenter!.dispose();
     super.dispose();
@@ -89,32 +87,46 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
                 //               ? Mangomp3
                 //               : Strawberrymp3,
                 // );
-                _audioPlayer = AudioPlayer();
-                _audioPlayer = AudioPlayer()
-                  ..setAsset(
-                    index == 0
+                 player.play(AssetSource(   index == 0
                         ? Applemp3
                         : index == 1
                             ? Guavamp3
                             : index == 2
                                 ? Mangomp3
-                                : Strawberrymp3,
-                  );
+                                : Strawberrymp3,));
+                // _audioPlayer = AudioPlayer();
+                // _audioPlayer = AudioPlayer()
+                //   ..setAsset(
+                //     index == 0
+                //         ? Applemp3
+                //         : index == 1
+                //             ? Guavamp3
+                //             : index == 2
+                //                 ? Mangomp3
+                //                 : Strawberrymp3,
+                //   );
 
-                _audioPlayer.play();
+                // _audioPlayer.play();
               }
               if (widget.homeModelId == 2) {
-                _audioPlayer = AudioPlayer();
-                _audioPlayer = AudioPlayer()
-                  ..setAsset(index == 0
+                     player.play(AssetSource( index == 0
                       ? Cornmp3
                       : index == 1
                           ? Onionmp3
                           : index == 2
                               ? Potatomp3
-                              : Cucumbermp3);
+                              : Cucumbermp3));
+                // _audioPlayer = AudioPlayer();
+                // _audioPlayer = AudioPlayer()
+                //   ..setAsset(index == 0
+                //       ? Cornmp3
+                //       : index == 1
+                //           ? Onionmp3
+                //           : index == 2
+                //               ? Potatomp3
+                //               : Cucumbermp3);
 
-                _audioPlayer.play();
+                // _audioPlayer.play();
                 // playAudioAudio(index == 0
                 //     ? Cornmp3
                 //     : index == 1
@@ -132,7 +144,7 @@ class _LevelRatingScreenState extends State<LevelRatingScreen> {
                         : Vegetablesquestions[index],
                     controllerTopCenter: _controllerTopCenter!,
                     pageController: pageController,
-                    audioPlayer: _audioPlayer,
+                    audioPlayer: player,
                   ),
                   SizedBox(
                     height: 25,
@@ -267,10 +279,11 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
             Random random = Random();
             int randomIndex = random.nextInt(audioFiles.length);
             String randomAudio = audioFiles[randomIndex];
-            widget.audioPlayer = AudioPlayer();
-            widget.audioPlayer = AudioPlayer()..setAsset(randomAudio);
+            // widget.audioPlayer = AudioPlayer();
+            // widget.audioPlayer = AudioPlayer()..setAsset(randomAudio);
 
-            widget.audioPlayer.play();
+            // widget.audioPlayer.play();
+                         widget.audioPlayer.play(AssetSource( randomAudio));
             // playAudioAudio(randomAudio);
             // setState(() {});
             widget.controllerTopCenter.play();
@@ -285,10 +298,11 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
                       }
                     }));
           } else {
-              widget.audioPlayer = AudioPlayer();
-            widget.audioPlayer = AudioPlayer()..setAsset(errormp32);
+            //   widget.audioPlayer = AudioPlayer();
+            // widget.audioPlayer = AudioPlayer()..setAsset(errormp32);
 
-            widget.audioPlayer.play();
+            // widget.audioPlayer.play();
+              widget.audioPlayer.play(AssetSource( errormp32));
             // playAudioAudio(errormp32);
             showDialog(
               barrierColor: Colors.transparent,

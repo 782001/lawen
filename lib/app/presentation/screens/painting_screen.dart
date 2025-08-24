@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/screens/display_image_screen.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 import 'package:lawen/app/presentation/screens/moving_screen.dart';
@@ -27,7 +28,9 @@ class PaintingScreen extends StatefulWidget {
 }
 
 class _PaintingScreenState extends State<PaintingScreen> {
-  late AudioPlayer _audioPlayer;
+  // late AudioPlayer _audioPlayer;
+      final player = AudioPlayer();
+                    
   List<List<Offset>> _paths = [];
   bool _isDrawingComplete = false;
   // ConfettiController? _controllerTopCenter;
@@ -45,12 +48,12 @@ class _PaintingScreenState extends State<PaintingScreen> {
     //   widget.levelsModel.pathData4,
     //   widget.levelsModel.pathData5,
     // ]);
-    _audioPlayer = AudioPlayer();
+    // _audioPlayer = AudioPlayer();
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    player.dispose();
     // _controllerTopCenter!.dispose();
 
     super.dispose();
@@ -141,7 +144,7 @@ class _PaintingScreenState extends State<PaintingScreen> {
                     }
                   });
                 },
-                onPanEnd: (details) {
+                onPanEnd: (details) async {
                   double paintedPoints = 0;
 
                   for (final path in _paths) {
@@ -186,13 +189,14 @@ class _PaintingScreenState extends State<PaintingScreen> {
                     int randomIndex = random.nextInt(audioFiles.length);
                     String randomAudio = audioFiles[randomIndex];
                     // playAudioAudio(randomAudio);
-                     _audioPlayer = AudioPlayer()
-                ..setAsset(
-               randomAudio
-                );
+              //        _audioPlayer = AudioPlayer()
+              //   ..setAsset(
+              //  randomAudio
+              //   );
 
-              _audioPlayer.play();
+              // _audioPlayer.play();
                     // playAudioAudio(bravo2);
+                        await   player.play(AssetSource(randomAudio));   
                   }
                 },
                 child: ClipPath(

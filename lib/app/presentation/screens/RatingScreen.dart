@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/widgets/audio_used.dart';
 import 'package:lawen/app/presentation/widgets/confetti.dart';
 import 'package:lawen/core/utils/assets_images_path.dart';
@@ -31,8 +32,9 @@ class RatingScreen extends StatefulWidget {
 }
 
 class _RatingScreenState extends State<RatingScreen> {
-  late AudioPlayer _audioPlayer;
-
+  // late AudioPlayer _audioPlayer;
+  final player = AudioPlayer();
+                     
   ConfettiController? _controllerTopCenter;
   final PageController pageController = PageController();
   @override
@@ -42,12 +44,12 @@ class _RatingScreenState extends State<RatingScreen> {
 
     super.initState();
 
-    _audioPlayer = AudioPlayer();
+    // _audioPlayer = AudioPlayer();
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    player.dispose();
     _controllerTopCenter!.dispose();
     super.dispose();
   }
@@ -68,10 +70,7 @@ class _RatingScreenState extends State<RatingScreen> {
             controller: pageController,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: RatingsList.length,
-            itemBuilder: (context, index) {
-              _audioPlayer = AudioPlayer()
-                ..setAsset(
-                  index == 0
+            itemBuilder: (context, index) {    player.play(AssetSource( index == 0
                       ? Applemp3
                       : index == 1
                           ? Cucumbermp3
@@ -81,10 +80,23 @@ class _RatingScreenState extends State<RatingScreen> {
                                   ? Onionmp3
                                   : index == 4
                                       ? Mangomp3
-                                      : Grapemp3,
-                );
+                                      : Grapemp3,));   
+              // _audioPlayer = AudioPlayer()
+              //   ..setAsset(
+              //     index == 0
+              //         ? Applemp3
+              //         : index == 1
+              //             ? Cucumbermp3
+              //             : index == 2
+              //                 ? Peppermp3
+              //                 : index == 3
+              //                     ? Onionmp3
+              //                     : index == 4
+              //                         ? Mangomp3
+              //                         : Grapemp3,
+              //   );
 
-              _audioPlayer.play();
+              // _audioPlayer.play();
               // playAudioAudio(
               //   index == 0
               //       ? Applemp3
@@ -105,7 +117,7 @@ class _RatingScreenState extends State<RatingScreen> {
                   RatingPage(
                     Rating: RatingsList[index],
                     controllerTopCenter: _controllerTopCenter!,
-                    pageController: pageController,
+                    pageController: pageController, player: player,
                   ),
                   SizedBox(
                     height: 25,
@@ -140,12 +152,12 @@ class _RatingScreenState extends State<RatingScreen> {
 class RatingPage extends StatelessWidget {
   final RatingModel Rating;
   final ConfettiController controllerTopCenter;
-  final PageController pageController;
+  final PageController pageController; final AudioPlayer player ;
   RatingPage({
     Key? key,
     required this.Rating,
     required this.controllerTopCenter,
-    required this.pageController,
+    required this.pageController, required this.player,
   }) : super(key: key);
 
   @override
@@ -177,7 +189,7 @@ class RatingPage extends StatelessWidget {
                   Rating: Rating,
                   index: index,
                   controllerTopCenter: controllerTopCenter,
-                  pageController: pageController,
+                  pageController: pageController, player: player,
                 );
               },
             ),
@@ -193,12 +205,12 @@ class RatingQuestCard extends StatefulWidget {
   final int index;
   final PageController pageController;
   final ConfettiController controllerTopCenter;
-
+  final AudioPlayer player ;
   const RatingQuestCard(
       {required this.Rating,
       required this.index,
       required this.controllerTopCenter,
-      required this.pageController});
+      required this.pageController, required this.player});
 
   @override
   State<RatingQuestCard> createState() => _RatingQuestCardState();
@@ -228,8 +240,9 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
             Random random = Random();
             int randomIndex = random.nextInt(audioFiles.length);
             String randomAudio = audioFiles[randomIndex];
-            playAudioAudio(randomAudio);
+            // playAudioAudio(randomAudio);
             // setState(() {});
+           widget. player.play(AssetSource(randomAudio));
             widget.controllerTopCenter.play();
             Future.delayed(Duration(seconds: 4)).then(
                 (value) => WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -241,8 +254,8 @@ class _RatingQuestCardState extends State<RatingQuestCard> {
                         );
                       }
                     }));
-          } else {
-            playAudioAudio(errormp32);
+          } else { widget. player.play(AssetSource(errormp32));
+            // playAudioAudio(errormp32);
             showDialog(
               barrierColor: Colors.transparent,
               context: context,

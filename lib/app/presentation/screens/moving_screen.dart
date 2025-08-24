@@ -1,6 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:lawen/app/presentation/screens/levels.dart';
 import 'package:lawen/app/presentation/widgets/confetti.dart';
 import 'package:lawen/core/utils/components.dart';
@@ -18,7 +19,9 @@ class MovingScreen extends StatefulWidget {
 }
 
 class _MovingScreenState extends State<MovingScreen> {
-  late AudioPlayer _audioPlayer;
+  // late AudioPlayer _audioPlayer;
+    final player = AudioPlayer();
+                   
   bool _isAppleMoved = false;
   ConfettiController? _controllerTopCenter;
   @override
@@ -28,12 +31,12 @@ class _MovingScreenState extends State<MovingScreen> {
 
     super.initState();
 
-    _audioPlayer = AudioPlayer();
+    // _audioPlayer = AudioPlayer();
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+   player.dispose();
     _controllerTopCenter!.dispose();
     super.dispose();
   }
@@ -84,14 +87,15 @@ class _MovingScreenState extends State<MovingScreen> {
                               );
                       },
                       onWillAccept: (data) => true,
-                      onAccept: (data) {
+                      onAccept: (data) async{
                         setState(() {
                           _isAppleMoved = true;
                         });
-                        _audioPlayer = AudioPlayer()
-                          ..setAsset(widget.levelsModel.heySound1);
+                        // _audioPlayer = AudioPlayer()
+                        //   ..setAsset(widget.levelsModel.heySound1);
 
-                        _audioPlayer.play();
+                        // _audioPlayer.play();
+                     await   player.play(AssetSource( widget.levelsModel.heySound1));
                         // playAudioAudio(widget.levelsModel.heySound1);
                         setState(() {});
                         _controllerTopCenter!.play();
